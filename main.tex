@@ -7,6 +7,8 @@
 
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm]{geometry}
 
+\usepackage{amsrefs}
+
 \title{\huge{\bf{A preliminary report on data analysis in fisheries science}}}
 \author{Jacob Passfield}
 \date{Autumn Term 2020}
@@ -17,9 +19,9 @@
 
 \section{Introduction}
 
-A quick Google search defines a fishery to be the industry of rearing and harvesting fish, and other aquatic life. With fish accounting for approximately seventeen percent of global protein consumption, it is no surprise that fisheries contribute one hundred billion dollars to the global economy, supporting roughly 260 million jobs worldwide. Thus fisheries serve as a significant ground for economic growth and development in many countries. 
+An initial Google search defines a fishery to be the industry of rearing and harvesting fish, and other aquatic life. With fish accounting for approximately seventeen percent of global protein consumption \cite{YouTube2017}, it is no surprise that fisheries contribute one hundred billion dollars to the global economy, supporting roughly 260 million jobs worldwide \cite{Big data}. Thus fisheries serve as a significant ground for economic growth and development in many countries. Beyond economic advantages however, the pressing issues of climate change make analysis in fisheries science paramount in predicting the future of marine populations and, by doing so, protecting an important food source. 
 
-Beyond economic advantages however, the pressing issues of climate change make analysis in fisheries science paramount in predicting the future of marine populations and, by doing so, protecting an important food source. And with this is mind I began exploring possible areas to focus my project on, starting with how global warming effects marine ecosystems.
+To do this mathematical models on fish population dynamics must be taken and the model parameters estimated from fisheries data. In this project I will use R to accompany my developing knowledge of data analysis techniques and mathematical models with their respective parameters. In this report however, I explore the effects of global warming on marine ecosystems to search for  possible areas to concentrate my project on. Then I introduce an example of a mathematical model called \textit{the mixed effect model} which is likely to be used in my project analysis. 
 
 \section{The effects of global warming on marine ecosystems}
 
@@ -47,11 +49,59 @@ In the studies researched above, the articles all follow a similar structure. Th
 
 \section{Mixed effect models}
 
-\subsection{Example}
+Ecological data analysis can be hard to deal with due to the presence of clustered data. For example certain fish are clustered under different fisheries or grouped by population or species. These different grouping factors may lead to fitting a model with many parameters which decreases the sample size and can leave data entries being not fully independent. As a result, mixed effects models were introduced to develop simple linear regression models and avoid these problems. 
+
+\subsection{The simple linear regression model}
+
+Equation.
+
+List.
+
+Traditionally we take a sample and use it to obtain estimates for the population parameters alpha and beta. This is safe to following these assumptions: normality, homogeneity, a fixed X, independent and using the correct model. Understanding what these assumptions mean is not important at this stage because data cannot be appropriately modelled by linear regression in ecology. Due to the clustered nature of ecological data it is difficult to verify these assumptions so this model is often rejected.
+
+Another reason why this model is often rejected can be demonstrated by the following example. Say we wanted to discover whether temperature affects fish body size, just like in … and so we collect data from nine fisheries and we take five samples from each. Since we take five samples from each fishery, it is expected that the body length values are more related to each other than to the body length values from samples at other fisheries. The model above does not consider this relatedness, and so we lead into mixed effect models. 
+
+\subsection{The linear mixed effect model}
+
+
+
+
+Where
+Yi is the (ni x 1) response vector
+Xi is the (ni x p) design matrix for fixed effects
+Beta is the (p x 1) regression coefficients for fixed effects
+Zi is the (ni x q) design matrix for random effects
+bi is the (qx1) vector of random effects
+Ri is the (ni x 1) vector of undiscovered information.
+
+We assume: 
+bi ~ N(0,D)
+ei ~ N(0, Ei)
+b1….bn,  e1…en independent.
+
+For example, in the study … yi refers to the mean body length of a species. For the fixed effects term: xi regard the mean annual sea surface temperature where the beta is the species-specific correlation to be estimated. The random effects term consider the random effects arisen from spatial variation (think…) the temporal variation across the years the data was collected and other random effects resulting from the site where the data was collected, the weather or from the data collector themselves. Because of the random effects term, this article was able to distinguish whether there was a relationship between sea surface temperature and mean body length because the random effects term took the relatedness between time, space and other errors into account. This model allowed for meaningful results in order to make reliable and accurate predictions about the affect of global warming on fish body sizes. Therefore it is expected that mixed effects modelling will be used in my analysis, too.
 
 \section{Conclusion}
 
-\bibliographystyle{abbrv}
-\bibliography{library}
+The studies references tend to serve as a warning to the impacts of warming of marine ecosystem by analysing either the changes in fish body size or the spatial trends or even both in different species and the same species in different locations. They conclude that it is paramount to consider the implications of these effects, meaning the extent of these changes remain relatively unexplored. For example, predicting how food webs may change or, more specifically, how body size may change functional role of specific species.
+
+With this in mind I will focus my project on how global warming affects marine ecosystems, perhaps looking at temp size using different data, or spatial trends using the same data. the affects temperature has on body size of fish or spatial variation, perhaps for data not used in these examples. I predict mixed modelling will be used to some extent in my analysis and R for this analysis. 
+
+\section*{References}
+\begin{biblist}
+
+\bib{YouTube2017}{article}{
+    author={Thai Union Group},
+    title={What is a Fishery?},
+    date={2017},
+    eprint={https://www.youtube.com/watch?v=I-DikSs4kRs}}    
+
+\bib{Big data}{article}{
+    author={Luis Diaz},
+    title={Big data: the future of sustainable fisheries},
+    date={2020},
+    eprint={https://fisheries.groupcls.com/big-data-the-future-of-sustainable-fisheries/}}
+
+\end{biblist}
 
 \end{document}
